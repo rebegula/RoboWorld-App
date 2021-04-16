@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from rest_framework import viewsets
+from .serializers import RetoSerializer
 
 '''
 from django.http import HttpResponse, JsonResponse
@@ -7,6 +9,9 @@ from json import loads
 from . models import Reto
 import psycopg2
 '''
+class RetoViewSet(viewsets.ModelViewSet):
+    queryset = Reto.objects.all().order_by('nombre')
+    serializer_class = RetoSerializer
 
 def inicio(request):
     return render(request, "roboworld_app/index.html")
